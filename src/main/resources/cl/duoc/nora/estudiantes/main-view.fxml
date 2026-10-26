@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane fx:controller="cl.duoc.nora.estudiantes.controller.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView fx:id="tblEstudiantes" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Correo" />
+            <TableColumn fx:id="colCarrera" prefWidth="75.0" text="Carrera" />
+        </columns>
+      </TableView>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtNombre" />
+            <TextField fx:id="txtCorreo" />
+            <TextField fx:id="txtCarrera" />
+            <Button mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+            <Button mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+            <Button mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
