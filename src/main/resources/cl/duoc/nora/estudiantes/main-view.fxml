@@ -25,6 +25,7 @@
             <Button mnemonicParsing="false" onAction="#guardar" text="Guardar" />
             <Button mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
             <Button mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
+            <TextField fx:id="txtBuscar" promptText="Buscar por nombre" />
          </children>
       </VBox>
    </right>

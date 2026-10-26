@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.transformation.FilteredList;
 
 import cl.duoc.nora.estudiantes.dao.EstudianteDAO;
 import cl.duoc.nora.estudiantes.dao.EstudianteDAOJson;
@@ -21,6 +22,7 @@ public class MainController {
     @FXML private TextField txtCarrera;
     @FXML private TableColumn<Estudiante, String> colJornada;
     @FXML private ComboBox<String> cmbJornada;
+    @FXML private TextField txtBuscar;
 
     private final EstudianteDAO dao = new EstudianteDAOJson();
     private final ObservableList<Estudiante> estudiantes = FXCollections.observableArrayList();
@@ -32,7 +34,11 @@ public class MainController {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
         colCarrera.setCellValueFactory(new PropertyValueFactory<>("carrera"));
-        tblEstudiantes.setItems(estudiantes);
+        FilteredList<Estudiante> filtrados = new FilteredList<>(estudiantes, e -> true);
+        txtBuscar.textProperty().addListener((obs, anterior, texto) ->
+                filtrados.setPredicate(e -> texto == null || texto.isBlank()
+                        || e.getNombre().toLowerCase().contains(texto.toLowerCase())));
+        tblEstudiantes.setItems(filtrados);
         colJornada.setCellValueFactory(new PropertyValueFactory<>("jornada"));
         cmbJornada.getItems().addAll("Diurna", "Vespertina");
         estudiantes.setAll(dao.listar());
